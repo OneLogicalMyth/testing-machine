@@ -67,14 +67,14 @@
     become: yes
 
 # import Kali into virtual box
-#  - name: Copying Kali OVA to PenTest machine
-#    copy:
-#      src: "{{ kali }}"
-#      dest: "/opt/Kali.ova"
-#      owner: root
-#      group: root
-#      mode: 0644
-#    become: yes
-#  - name: Importing Kali into Virtualbox
-#    shell: vboxmanage import /opt/Kali.ova
+  - name: Copying Kali OVA to PenTest machine
+    copy:
+      src: "{{ kali }}"
+      dest: "/opt/Kali.ova"
+      owner: root
+      group: root
+      mode: 0644
+    become: yes
+  - name: Importing Kali into Virtualbox
+    shell: vboxmanage import /opt/Kali.ova
 
