@@ -20,6 +20,7 @@
     git:
       repo: "{{ item.value.url }}"
       dest: "{{ item.value.dir }}"
+      recursive: yes
       update: yes
     with_dict: "{{ repos }}"
     become: yes
@@ -41,6 +42,18 @@
     pip:
       chdir: /opt/impacket
       name: .
+    become: yes
+
+# install crack map exec
+  - name: Setting up the pipenv for crackmapexec
+    shell: pipenv install
+    args:
+        chdir: /opt/crackmapexec
+    become: yes
+  - name: Running crackmapexec setup within the pipenv
+    shell: pipenv run python setup.py install
+    args:
+        chdir: /opt/crackmapexec
     become: yes
 
 # install and configure nessus

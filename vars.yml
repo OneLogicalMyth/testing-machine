@@ -12,6 +12,11 @@ packages:
   - python-pip
   - virtualenv
   - droopy
+  - smbclient
+  - libssl-dev
+  - libffi-dev
+  - python-dev
+  - build-essential
 
 repos:
   repo1:
@@ -29,10 +34,14 @@ repos:
   repo5:
     url: https://github.com/SpiderLabs/Responder
     dir: /opt/responder
+  repo6:
+    url: https://github.com/byt3bl33d3r/CrackMapExec
+    dir: /opt/crackmapexec
 
 pip:
   - twisted
   - requests
+  - pipenv
 
 kali: files/kali-linux-2019.1-vbox-amd64.ova
 nessus: files/Nessus-8.2.3-ubuntu1110_amd64.deb
