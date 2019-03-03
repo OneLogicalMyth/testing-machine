@@ -1,0 +1,80 @@
+- hosts: pentest_machine
+  gather_facts: yes
+  vars_files:
+    - vars.yml
+  tasks:
+  - name: Checking SSH access to PenTest machine
+    ping:
+  - name: Checking and applying updates
+    apt:
+      upgrade: safe
+      update_cache: yes
+    become: yes
+
+# grab packages and repos
+  - name: Installing required packages
+    apt:
+      name: "{{ packages }}"
+    become: yes
+  - name: Git cloning repos
+    git:
+      repo: "{{ item.value.url }}"
+      dest: "{{ item.value.dir }}"
+      update: yes
+    with_dict: "{{ repos }}"
+    become: yes
+
+# install the latest pip version and then other pip packages
+  - name: Upgrading pip
+    pip:
+      name: pip
+      state: latest
+    become: yes
+  - name: Installing pip packages
+    pip:
+      name: "{{ pip }}"
+      state: latest
+    become: yes
+
+# install impacket
+  - name: Installing impacket
+    pip:
+      chdir: /opt/impacket
+      name: .
+    become: yes
+
+# install and configure nessus
+  - name: Copying Nessus to PenTest machine
+    copy:
+      src: "{{ nessus }}"
+      dest: "/opt/Nessus.deb"
+      owner: root
+      group: root
+      mode: 0644
+    become: yes
+  - name: Install Nessus deb file
+    apt:
+      deb: "/opt/Nessus.deb"
+    become: yes
+  - name: Enable service nessusd and start it
+    service:
+      name: nessusd
+      enabled: yes
+      state: started
+    become: yes    
+  - name: Ensure Nessus is only listening on localhost
+    shell: /opt/nessus/sbin/nessuscli fix --set listen_address=127.0.0.1
+    become: yes
+
+# import Kali into virtual box
+#  - name: Copying Kali OVA to PenTest machine
+#    copy:
+#      src: "{{ kali }}"
+#      dest: "/opt/Kali.ova"
+#      owner: root
+#      group: root
+#      mode: 0644
+#    become: yes
+#  - name: Importing Kali into Virtualbox
+#    shell: vboxmanage import /opt/Kali.ova
+

@@ -1,0 +1,38 @@
+packages:
+  - virtualbox
+  - gufw
+  - brasero
+  - vlan
+  - nmap
+  - git
+  - nbtscan
+  - arp-scan
+  - wireshark
+  - gparted
+  - python-pip
+  - virtualenv
+  - droopy
+
+repos:
+  repo1:
+    url: https://github.com/PowerShellMafia/PowerSploit
+    dir: /opt/powersploit
+  repo2:
+    url: https://github.com/samratashok/nishang
+    dir: /opt/nishang
+  repo3:
+    url: https://github.com/EmpireProject/Empire
+    dir: /opt/empire
+  repo4:
+    url: https://github.com/SecureAuthCorp/impacket
+    dir: /opt/impacket
+  repo5:
+    url: https://github.com/SpiderLabs/Responder
+    dir: /opt/responder
+
+pip:
+  - twisted
+  - requests
+
+kali: files/kali-linux-2019.1-vbox-amd64.ova
+nessus: files/Nessus-8.2.3-ubuntu1110_amd64.deb

@@ -1,0 +1,9 @@
+[pentest_machine]
+192.168.18.134
+
+[pentest_machine:vars]
+ansible_connection=ssh
+ansible_user=onelogicalmyth
+ansible_ssh_pass=Password1
+ansible_become_password=Password1
+ansible_become_method=sudo
