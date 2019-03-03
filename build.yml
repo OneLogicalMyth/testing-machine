@@ -56,6 +56,14 @@
         chdir: /opt/crackmapexec
     become: yes
 
+# add sym links for scripts
+  - name: Create symbolic link for responder
+    file:
+      src: /opt/responder/Responder.py
+      path: /usr/local/bin/responder
+      state: link
+    become: yes
+
 # install and configure nessus
   - name: Copying Nessus to PenTest machine
     copy:

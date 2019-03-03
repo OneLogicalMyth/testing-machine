@@ -10,6 +10,7 @@ packages:
   - wireshark
   - gparted
   - python-pip
+  - python-ldap
   - virtualenv
   - droopy
   - smbclient
@@ -37,6 +38,9 @@ repos:
   repo6:
     url: https://github.com/byt3bl33d3r/CrackMapExec
     dir: /opt/crackmapexec
+  repo7:
+    url: https://github.com/skelsec/PyKerberoast
+    dir: /opt/pykerberoast
 
 pip:
   - twisted
