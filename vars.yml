@@ -1,5 +1,7 @@
 packages:
   - virtualbox
+  - virtualbox-guest-additions-iso
+  - virtualbox-ext-pack
   - gufw
   - brasero
   - vlan
@@ -18,6 +20,7 @@ packages:
   - libffi-dev
   - python-dev
   - build-essential
+  - nfs-common
 
 repos:
   repo1:
@@ -41,6 +44,9 @@ repos:
   repo7:
     url: https://github.com/skelsec/PyKerberoast
     dir: /opt/pykerberoast
+  repo8:
+    url: https://github.com/drwetter/testssl.sh
+    dir: /opt/testssl
 
 pip:
   - twisted
